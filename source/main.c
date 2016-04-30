@@ -38,11 +38,14 @@ int main(int argc, const char* argv[]) {
     gfxInitDefault();
 
     if(argc > 0) {
+        consoleInit(GFX_BOTTOM, NULL);
         svchax_init(true);
         if(!__ctr_svchax || !__ctr_svchax_srv) {
             util_panic("Failed to acquire kernel access.");
             return 1;
         }
+        gfxExit();
+        gfxInitDefault();
     }
 
     aptOpenSession();
